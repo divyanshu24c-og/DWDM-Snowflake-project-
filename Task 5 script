@@ -1,0 +1,31 @@
+-- Ensure context
+USE WAREHOUSE dwdm_wh;
+USE DATABASE dwdm_db;
+USE SCHEMA dwdm_schema;
+
+-- 1. Setup table and initial data
+CREATE OR REPLACE TABLE recovery_demo (
+    order_id INT,
+    item_name STRING,
+    quantity INT
+);
+
+INSERT INTO recovery_demo VALUES 
+    (501, 'Keyboard', 15),
+    (502, 'Mouse', 30),
+    (503, 'Headset', 12);
+
+SELECT * FROM recovery_demo;
+
+-- 2. Accidental deletion
+DELETE FROM recovery_demo;
+
+-- Verification of empty table
+SELECT * FROM recovery_demo;
+
+-- 3. Recover deleted records using Time Travel
+INSERT INTO recovery_demo
+SELECT * FROM recovery_demo BEFORE (STATEMENT => LAST_QUERY_ID());
+
+-- 4. Verify full recovery
+SELECT * FROM recovery_demo;
