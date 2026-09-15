@@ -1,35 +1,37 @@
 # DWDM-Snowflake-project-
 An end-to-end Snowflake data warehousing project demonstrating cloud DDL object creation, batch data ingestion via SnowSQL, and advanced Time Travel recovery.
-# Snowflake Data Warehousing & Data Management (DWDM) Project
+# ❄️ Snowflake Data Warehousing & Data Management (DWDM)
 
-An end-to-end Snowflake data warehousing project demonstrating cloud DDL object creation, batch data ingestion via SnowSQL, and advanced Time Travel recovery.
+[![Snowflake](https://img.shields.io/badge/Platform-Snowflake-29B5EF?logo=snowflake&logoColor=white)](https://snowflake.com)
+[![SnowSQL](https://img.shields.io/badge/CLI-SnowSQL-orange)](https://docs.snowflake.com)
+[![Status](https://img.shields.io/badge/Status-Completed-success)](https://github.com)
 
-## Project Overview
+An end-to-end cloud data warehousing project implementing DDL/DML operations, command-line staging, batch CSV loading via SnowSQL, and Time Travel recovery.
 
-This repository contains SQL implementation scripts and verification records for the DWDM tutorial assignment, executed on a Snowflake cloud data warehouse instance via SnowSQL and the web console.
+## 🚀 Quick Navigation
 
-## Tasks & Implementation Details
+| Task ID | Module Description | Key Commands / Functions Used |
+| :--- | :--- | :--- |
+| **Task 1** | Session & CLI Login | `snowsql`, `CURRENT_USER()`, `CURRENT_ROLE()` |
+| **Task 2** | DDL Objects & DML Lifecycle | `CREATE WAREHOUSE`, `INSERT`, `UPDATE`, `DELETE` |
+| **Task 3** | Batch Staging & Ingestion | `PUT`, `COPY INTO`, `LIST` |
+| **Task 4** | Historical Time Travel | `AT (OFFSET => ...)` |
+| **Task 5** | Disaster Recovery / Rollback | `BEFORE (STATEMENT => LAST_QUERY_ID())` |
 
-### Task 1: SnowSQL Connection & Session Verification
-* Established a secure command-line session using SnowSQL.
-* Verified user context, role, active warehouse, database, and schema settings.
+---
 
-### Task 2: DDL Object Creation & DML Operations
-* Created core enterprise objects: Warehouse (`XSMALL`), Database, Schema, and Internal Stage.
-* Created the `student_records` table and performed full lifecycle DML operations (`INSERT`, `SELECT`, `UPDATE`, and `DELETE`) on 10 student records.
+## ⚙️ Environment Configuration
 
-### Task 3: Batch Data Loading via SnowSQL
-* Prepared a structured CSV dataset containing multi-record student information.
-* Staged the local file to Snowflake using the internal `PUT` command and loaded data into the target table via `COPY INTO`.
+* **Account Identifier:** `yjemxcs-hj02840`
+* **Database:** `dwdm_db`
+* **Schema:** `dwdm_schema`
+* **Warehouse:** `dwdm_wh` (`XSMALL`)
 
-### Task 4: Snowflake Time Travel (Historical Querying)
-* Executed data modifications (`UPDATE` and `DELETE`) on a demonstration table.
-* Queried historical table states prior to the modifications using the `AT (OFFSET => ...)` clause.
+---
 
-### Task 5: Data Recovery Using Time Travel
-* Simulated accidental data loss by purging a table using `DELETE`.
-* Restored the lost data using the `BEFORE (STATEMENT => LAST_QUERY_ID())` recovery pattern.
+## 📂 Repository Layout
 
-## Repository Structure
-* `sql_scripts/`: Contains step-by-step SQL scripts for all tasks.
-* `screenshots/`: Output validation screenshots for each task stage.
+```text
+├── sql_scripts/          # Step-by-step SQL execution files for all tasks
+├── screenshots/          # Output validation proofs for submission report
+└── README.md             # Project documentation
