@@ -1,0 +1,53 @@
+-- 1. Create and set Warehouse
+CREATE OR REPLACE WAREHOUSE dwdm_wh 
+    WITH WAREHOUSE_SIZE = 'XSMALL' 
+    AUTO_SUSPEND = 60 
+    AUTO_RESUME = TRUE;
+USE WAREHOUSE dwdm_wh;
+
+-- 2. Create and set Database & Schema
+CREATE OR REPLACE DATABASE dwdm_db;
+USE DATABASE dwdm_db;
+
+CREATE OR REPLACE SCHEMA dwdm_schema;
+USE SCHEMA dwdm_schema;
+
+-- 3. Create Internal Stage
+CREATE OR REPLACE STAGE my_internal_stage;
+
+-- 4. Create Table
+CREATE OR REPLACE TABLE student_records (
+    id INT,
+    name STRING,
+    department STRING,
+    marks INT
+);
+
+-- 5. INSERT Operation (10 Records)
+INSERT INTO student_records (id, name, department, marks) 
+VALUES 
+    (101, 'Aman', 'CSE', 85),
+    (102, 'Priya', 'ECE', 90),
+    (103, 'Rohan', 'IT', 78),
+    (104, 'Sneha', 'CSE', 88),
+    (105, 'Vikram', 'MECH', 82),
+    (106, 'Ananya', 'CSE', 91),
+    (107, 'Rahul', 'EEE', 76),
+    (108, 'Neha', 'IT', 94),
+    (109, 'Karan', 'CIVIL', 79),
+    (110, 'Divya', 'ECE', 87);
+
+-- 6. SELECT Operation
+SELECT * FROM student_records;
+
+-- 7. UPDATE Operation
+UPDATE student_records 
+SET marks = 95 
+WHERE id = 101;
+
+-- 8. DELETE Operation
+DELETE FROM student_records 
+WHERE id = 103;
+
+-- 9. Final Verification
+SELECT * FROM student_records;
