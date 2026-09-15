@@ -1,0 +1,22 @@
+-- Ensure context
+USE WAREHOUSE dwdm_wh;
+USE DATABASE dwdm_db;
+USE SCHEMA dwdm_schema;
+
+-- Stage local file
+PUT file://C:\temp\students_load_10.csv @dwdm_db.dwdm_schema.my_internal_stage AUTO_COMPRESS=TRUE;
+
+-- Verify staging
+LIST @my_internal_stage;
+
+-- Load staged CSV into table
+COPY INTO student_records
+FROM @my_internal_stage/students_load_10.csv.gz
+FILE_FORMAT = (
+    TYPE = 'CSV' 
+    FIELD_DELIMITER = ',' 
+    SKIP_HEADER = 0
+);
+
+-- Verify ingestion
+SELECT * FROM student_records;
