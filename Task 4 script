@@ -1,1 +1,32 @@
+-- Ensure context
+USE WAREHOUSE dwdm_wh;
+USE DATABASE dwdm_db;
+USE SCHEMA dwdm_schema;
 
+-- 1. Create table and insert initial records
+CREATE OR REPLACE TABLE time_travel_demo (
+    emp_id INT,
+    emp_name STRING,
+    department STRING,
+    salary FLOAT
+);
+
+INSERT INTO time_travel_demo VALUES 
+    (1, 'Aarav', 'IT', 50000),
+    (2, 'Diya', 'HR', 45000),
+    (3, 'Kabir', 'Finance', 60000);
+
+SELECT * FROM time_travel_demo;
+
+-- 2. Modify records (Wait 10-15 seconds before running)
+UPDATE time_travel_demo 
+SET salary = 55000 
+WHERE emp_id = 1;
+
+DELETE FROM time_travel_demo 
+WHERE emp_id = 3;
+
+SELECT * FROM time_travel_demo;
+
+-- 3. Time Travel query using Offset
+SELECT * FROM time_travel_demo AT (OFFSET => -15);
