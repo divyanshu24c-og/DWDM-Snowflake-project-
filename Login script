@@ -1,0 +1,8 @@
+Microsoft Windows [Version 10.0.26200.6725]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\HP>snowsql -a yjemxcs-hj02840 -u DIVYANSHU
+Password:
+* SnowSQL * v1.5.1
+Type SQL statements or !help
+DIVYANSHU#COMPUTE_WH@(no database).(no schema)>
